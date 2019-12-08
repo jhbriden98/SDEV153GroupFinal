@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<% @courses.each do |course| %>
+  <div class="w-auto">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Course Name: <%= course.cname %></li>
+      <li class="list-group-item w-25">Description: <%= course.desc %></li>
+      <li class="list-group-item w-25">Subject: <%= course.subj %></li>
+      <li class="list-group-item">Credits: <%= course.credits %></li>
+      <li class="list-group-item w-25">Professor: <%= course.prof %></li>
+      <li class="list-group-item">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary"><%= link_to 'Show', course, class:"text-light" %></button>
+          <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_course_path(course), class:"text-light"  %></button>
+          <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+<% end %>
+<br>
+<%= link_to 'New Course', new_course_path %>

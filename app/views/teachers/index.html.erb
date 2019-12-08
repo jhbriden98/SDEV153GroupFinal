@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<% @teachers.each do |teacher| %>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item w-25">Name: <%= teacher.name %></li>
+    <li class="list-group-item w-25">Courses: <%= teacher.course %></li>
+    <li class="list-group-item">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary"><%= link_to 'Show', teacher, class:"text-light" %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_teacher_path(teacher), class:"text-light"  %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
+      </div>
+    </li>
+  </ul>
+<% end %>
+<br>
+<%= link_to 'New Teacher', new_teacher_path %>

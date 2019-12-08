@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cname: MyString
+  desc: MyText
+  subj: MyString
+  credits: 1
+  prof: MyString
+
+two:
+  cname: MyString
+  desc: MyText
+  subj: MyString
+  credits: 1
+  prof: MyString

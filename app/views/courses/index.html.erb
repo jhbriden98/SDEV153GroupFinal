@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <ul class="list-group list-group-horizontal">
@@ -26,7 +27,7 @@
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary"><%= link_to 'Show', course, class:"text-light" %></button>
         <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_course_path(course), class:"text-light"  %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
       </div>
     </li>
   </ul>

@@ -1,3 +1,3 @@
 class Teacher < ApplicationRecord
-    has_many :Courses
+    has_many :courses
 end

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item w-25"><h4>Course</h4></li>
+    <li class="list-group-item w-25"><h4>Description</h4></li>
+    <li class="list-group-item w-25"><h4>Subject Area</h4></li>
+    <li class="list-group-item w-25"><h4>Credit Hours</h4></li>
+    <li class="list-group-item w-25"><h4>Professor</h4></li>
+    <li class="list-group-item">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary text-light">Show</button>
+        <button type="button" class="btn btn-secondary text-light">Edit</button>
+        <button type="button" class="btn btn-secondary text-light">Destroy</button>
+      </div>
+    </li>
+  </ul>
+
+<% @courses.each do |course| %>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item w-25"><%= course.course_name %></li>
+    <li class="list-group-item w-25"><%= course.course_desc %></li>
+    <li class="list-group-item w-25"><%= course.course_subj %></li>
+    <li class="list-group-item w-25"><%= course.course_cred %></li>
+    <li class="list-group-item w-25"><%= course.course_prof_id %></li>
+    <li class="list-group-item">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary"><%= link_to 'Show', course, class:"text-light" %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_course_path(course), class:"text-light"  %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
+      </div>
+    </li>
+  </ul>
+<% end %>
+<br>
+<%= link_to 'New Course', new_course_path, class:"btn btn-secondary" %>

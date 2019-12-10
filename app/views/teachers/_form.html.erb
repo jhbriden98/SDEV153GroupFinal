@@ -1,0 +1,19 @@
+<%= simple_form_for(@teacher) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <form>
+    <div class="form-group form-inputs">
+      <label>Teacher's Name</label>
+      <%= f.input :teacher_name, class:"form-control" %>
+      <small id="emailHelp" class="form-text text-muted">For example, "Zach Hamby"</small>
+    </div>
+    <div class="form-group">
+      <label>Teacher's Bio</label>
+      <%= f.input :teacher_bio, class:"form-control" %>
+      <small id="emailHelp" class="form-text text-muted">For example, "Professor at Ivy Tech Community College"</small>
+    </div>
+    <div class="form-actions">
+    <%= f.button :submit, class:"btn btn-secondary" %>
+    </div>
+  </form>
+<% end %>

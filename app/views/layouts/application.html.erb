@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Course Registration</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active"><%= link_to 'Courses', courses_path %></a>
+          <a class="nav-item nav-link"><%= link_to 'Teachers', teachers_path %></a>
+        </div>
+        <form class="form-inline ml-auto">
+          <% if current_user %>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+              <% else %>
+              <%= link_to 'Register', new_user_registration_path, class: "btn btn-outline-success mr-2" %>
+              <%= link_to 'Sign In', new_user_session_path, class: "btn btn-outline-success mr-2" %>
+          <% end %>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <div class="mr-4 ml-4 pr-4 pl-4 pt-4">
+      <% if not @messages_rendered -%>
+        <% if flash[:alert] -%>
+          <<div class="alert alert-warning" role="alert"><p class='alert'><%=h flash[:alert] %></p></div>
+        <% end -%>
+        <% if flash[:notice] -%>
+          <div class="alert alert-info" role="alert"><p class='notice'><%=h flash[:notice] %></p></div>
+        <% end -%>
+      <% end -%>
+      <% @messages_rendered = true -%>
+      <%= yield %>
+    </div>
+  </body>
+</html>

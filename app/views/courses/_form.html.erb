@@ -1,0 +1,18 @@
+<div class="card-body">
+  <%= simple_form_for(@course) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :course_name, placeholder: "Enter Name of Course" %>
+      <%= f.input :course_desc, placeholder: "Describe Course" %>
+      <%= f.input :course_subj, placeholder: "Enter Course Subject" %>
+      <%= f.input :course_cred, placeholder: "How many credit hours is it?" %>
+      <%= f.input :teacher_id, collection: Teacher.all, prompt: "Select a Teacher"%>
+    </div>
+</div>
+<div class="form-actions card-footer" style="background-color: #b0e0e6;">
+  <%= f.button :submit, class:"btn btn-info" %>
+  <%= f.button :button, "Cancel", type: "reset", class:"btn btn-secondary" %>
+</div>
+
+<% end %>

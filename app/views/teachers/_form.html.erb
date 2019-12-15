@@ -1,14 +1,15 @@
-<div class="card-body">
-  <%= simple_form_for(@teacher) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <div class="form-group form-inputs">
-      <%= f.input :teacher_name, class:"form-control" %>
-      <%= f.input :teacher_bio, class:"form-control" %>
+
+<%= simple_form_for(@teacher) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="card-body">
+    <div class="form-inputs">
+      <%= f.input :teacher_name %>
+      <%= f.input :teacher_bio %>
     </div>
-</div>
-<div class="form-actions card-footer" style="background-color: #b0e0e6;">
-  <%= f.button :submit, class:"btn btn-info" %>
-  <%= f.button :button, "Cancel", type: "reset", class:"btn btn-secondary" %>
-</div>
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-info" %>
+      <%= f.button :button, "Cancel", type: "reset", class:"btn btn-secondary" %>
+    </div>
+  </div>
 <% end %>

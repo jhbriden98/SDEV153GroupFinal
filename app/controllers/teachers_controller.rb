@@ -5,6 +5,11 @@ class TeachersController < ApplicationController
   # GET /teachers.json
   def index
     @teachers = Teacher.all
+    if params[:search]
+      @teachers = Teacher.search(params[:search]).order("created_at DESC")
+    else
+      @teachers = Teacher.all.order('created_at DESC')
+    end
   end
 
   # GET /teachers/1

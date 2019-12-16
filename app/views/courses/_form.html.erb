@@ -10,9 +10,9 @@
       <%= f.input :course_cred, placeholder: "How many credit hours is it?" %>
       <%= f.input :teacher_id, collection: Teacher.all, prompt: "Select a Teacher"%>
     </div>
-    <div class="form-actions card-footer">
-      <%= f.button :submit, class:"btn btn-info" %>
-      <%= f.button :button, "Cancel", type: "reset", class:"btn btn-secondary" %>
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-outline-success" %>
+      <%= f.button :button, "Clear", type: "reset", class:"btn btn-outline-danger" %>
     </div>
   </div>
 

@@ -8,8 +8,10 @@
     <li class="list-group-item">
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-light text-secondary">Show</button>
-        <button type="button" class="btn btn-light text-secondary">Edit</button>
-        <button type="button" class="btn btn-light text-secondary">Destroy</button>
+        <% if current_user && current_user.admin %>
+          <button type="button" class="btn btn-light text-secondary">Edit</button>
+          <button type="button" class="btn btn-light text-secondary">Destroy</button>
+        <% end %>
       </div>
     </li>
   </ul>
@@ -23,12 +25,14 @@
     <li class="list-group-item w-25"><%= course.teacher.teacher_name %></li>
     <li class="list-group-item">
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary"><%= link_to 'Show', course, class:"text-light" %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_course_path(course), class:"text-light"  %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-light"  %></button>
+        <%= link_to 'Show', course, class:"btn btn-outline-success" %>
+        <% if current_user && current_user.admin %>
+          <%= link_to 'Edit', edit_course_path(course), class:"btn btn-outline-success"  %>
+          <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-success" %>
+        <% end %>
       </div>
     </li>
   </ul>
 <% end %>
 <br>
-<%= link_to 'New Course', new_course_path, class:"btn btn-secondary" %>
+<%= link_to 'New Course', new_course_path, class:"btn btn-outline-success" %>

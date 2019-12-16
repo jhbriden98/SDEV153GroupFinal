@@ -20,28 +20,33 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active"><%= link_to 'Courses', courses_path %></a>
-          <a class="nav-item nav-link"><%= link_to 'Teachers', teachers_path %></a>
+          <a class="nav-item nav-link"><%= link_to 'Courses', courses_path, class:"text-success" %></a>
+          <a class="nav-item nav-link"><%= link_to 'Teachers', teachers_path, class:"text-success" %></a>
         </div>
         <form class="form-inline ml-auto">
           <% if current_user %>
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-success" %>&nbsp;&nbsp;
               <% else %>
               <%= link_to 'Register', new_user_registration_path, class: "btn btn-outline-success mr-2" %>
               <%= link_to 'Sign In', new_user_session_path, class: "btn btn-outline-success mr-2" %>
           <% end %>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <%= form_tag(courses_path, :method => 'get', class: 'navbar-form navbar-right') do %>
+            <%= text_field_tag :search, params[:search], placeholder: 'Search Courses', class: 'form-control' %>&nbsp;&nbsp;
+            <%= submit_tag "Search", class: 'btn btn-outline-success my-2 my-sm-0', :name => nil %>
+          <% end %>
         </form>
       </div>
     </nav>
     <div class="mr-4 ml-4 pr-4 pl-4 pt-4">
       <% if not @messages_rendered -%>
         <% if flash[:alert] -%>
-          <<div class="alert alert-warning" role="alert"><p class='alert'><%=h flash[:alert] %></p></div>
+          <div class="alert alert-warning" role="alert"><%=h flash[:alert] %></div>
         <% end -%>
         <% if flash[:notice] -%>
-          <div class="alert alert-info" role="alert"><p class='notice'><%=h flash[:notice] %></p></div>
+          <div class="alert alert-info" role="alert"><%=h flash[:notice] %></div>
+        <% end -%>
+        <% if @courses.blank? -%>
+          <div class="alert alert-info" role="alert">There are no results containing the term <%= params[:search] %>.</div>
         <% end -%>
       <% end -%>
       <% @messages_rendered = true -%>

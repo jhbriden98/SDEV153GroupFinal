@@ -45,8 +45,10 @@
         <% if flash[:notice] -%>
           <div class="alert alert-info" role="alert"><%=h flash[:notice] %></div>
         <% end -%>
-        <% if @courses.blank? -%>
-          <div class="alert alert-info" role="alert">There are no results containing the term <%= params[:search] %>.</div>
+        <% if current_page?(controller: 'courses', action: 'search') && @courses.blank? -%>
+            <div class="alert alert-info" role="alert">There are no courses containing the term <%= params[:search] %>.</div>
+        <% elsif current_page?(controller: 'teachers', action: 'search') && @teachers.blank? -%>
+            <div class="alert alert-info" role="alert">There are no teachers containing the term <%= params[:search] %>.</div>
         <% end -%>
       <% end -%>
       <% @messages_rendered = true -%>

@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :addcourse, :removecourse]
   before_action :authenticate_user!, except: [:show, :index]
 
   # GET /courses
@@ -11,6 +11,28 @@ class CoursesController < ApplicationController
     else
       @courses = Course.all.order('created_at DESC')
     end
+  end
+  
+  # GET courses/1/courselist
+  def courselist
+    @courses = Course.all
+    @usercourselist = current_user.courses
+  end
+  
+  # ADD a course to schedule
+  def addcourse
+    current_user.courses<<@course unless current_user.courses.exists?(@course.id)
+    redirect_to courses_path
+  end
+  
+  # REMOVE a course from schedule
+  def removecourse
+     course = Course.find(params[:course][:id])
+     schedule = course.schedules.find(params[:schedule][:id])
+     if schedule
+        course.schedule.delete(scedule)
+     end
+     redirect_to courselist_courses_path
   end
 
   # GET /courses/1

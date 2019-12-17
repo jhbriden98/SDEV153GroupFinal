@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<% @usercourselist.each do |usercourse| %>
+    <ul class="list-group list-group-horizontal">
+    <li class="list-group-item w-25"><%= usercourse.course_name %></li>
+    <li class="list-group-item w-25"><%= usercourse.course_desc %></li>
+    <li class="list-group-item w-25"><%= usercourse.course_subj %></li>
+    <li class="list-group-item w-25"><%= usercourse.course_cred %></li>
+    <li class="list-group-item w-25"><%= usercourse.teacher.teacher_name %></li>
+    <li class="list-group-item">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <% if current_user %>
+          <%= link_to 'Remove', removecourse_course_path(@courses), class:"btn btn-outline-danger" %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+<% end %>

@@ -25,13 +25,14 @@
         </div>
         <form class="form-inline ml-auto">
           <% if current_user %>
+              <%= link_to 'My Courses', courselist_course_path(current_user), class: "btn btn-outline-success" %>&nbsp;&nbsp;
               <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-success" %>&nbsp;&nbsp;
               <% else %>
               <%= link_to 'Register', new_user_registration_path, class: "btn btn-outline-success mr-2" %>
               <%= link_to 'Sign In', new_user_session_path, class: "btn btn-outline-success mr-2" %>
           <% end %>
           <%= form_tag(courses_path, :method => 'get', class: 'navbar-form navbar-right') do %>
-            <%= text_field_tag :search, params[:search], placeholder: 'Search Courses', class: 'form-control' %>&nbsp;&nbsp;
+            <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control' %>&nbsp;&nbsp;
             <%= submit_tag "Search", class: 'btn btn-outline-success my-2 my-sm-0', :name => nil %>
           <% end %>
         </form>
@@ -44,11 +45,6 @@
         <% end -%>
         <% if flash[:notice] -%>
           <div class="alert alert-info" role="alert"><%=h flash[:notice] %></div>
-        <% end -%>
-        <% if current_page?(controller: 'courses', action: 'search') && @courses.blank? -%>
-            <div class="alert alert-info" role="alert">There are no courses containing the term <%= params[:search] %>.</div>
-        <% elsif current_page?(controller: 'teachers', action: 'search') && @teachers.blank? -%>
-            <div class="alert alert-info" role="alert">There are no teachers containing the term <%= params[:search] %>.</div>
         <% end -%>
       <% end -%>
       <% @messages_rendered = true -%>

@@ -8,12 +8,11 @@
       <%= f.input :course_desc, placeholder: "Describe Course" %>
       <%= f.input :course_subj, placeholder: "Enter Course Subject" %>
       <%= f.input :course_cred, placeholder: "How many credit hours is it?" %>
-      <%= f.input :teacher_id, collection: Teacher.all, prompt: "Select a Teacher"%>
-    </div>
-    <div class="form-actions">
-      <%= f.button :submit, class:"btn btn-outline-success" %>
-      <%= f.button :button, "Clear", type: "reset", class:"btn btn-outline-danger" %>
+      <%= f.collection_select :teacher_id, Teacher.all, :id, :teacher_name, prompt: "Select a Teacher"%><br>
     </div>
   </div>
-
+  <div class="card-footer form-actions">
+    <%= f.button :submit, class:"btn btn-outline-success" %>
+    <%= f.button :button, "Clear", type: "reset", class:"btn btn-outline-danger" %>
+  </div>
 <% end %>

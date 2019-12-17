@@ -1,4 +1,8 @@
 
+  <% if @courses.blank? -%>
+    <div class="alert alert-info" role="alert">There are no courses containing the term <%= params[:search] %>.</div>
+  <% end %>
+
 <ul class="list-group list-group-horizontal">
     <li class="list-group-item w-25"><h4>Course</h4></li>
     <li class="list-group-item w-25"><h4>Description</h4></li>
@@ -8,6 +12,9 @@
     <li class="list-group-item">
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-light text-secondary">Show</button>
+        <% if current_user %>
+          <button type="button" class="btn btn-light text-secondary">Add</button>
+        <% end %>
         <% if current_user && current_user.admin %>
           <button type="button" class="btn btn-light text-secondary">Edit</button>
           <button type="button" class="btn btn-light text-secondary">Destroy</button>
@@ -26,6 +33,9 @@
     <li class="list-group-item">
       <div class="btn-group" role="group" aria-label="Basic example">
         <%= link_to 'Show', course, class:"btn btn-outline-success" %>
+        <% if current_user %>
+          <%= link_to 'Add', addcourse_course_path(course), class:"btn btn-outline-success" %>
+        <% end %>
         <% if current_user && current_user.admin %>
           <%= link_to 'Edit', edit_course_path(course), class:"btn btn-outline-success"  %>
           <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-success" %>
